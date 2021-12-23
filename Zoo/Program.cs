@@ -22,15 +22,29 @@ namespace Zoo
 
             foreach (var animal in animals)
             {
-                Bird bird = new Bird(1.5);
-                animal.Eat(bird);
+                animal.Eat(new Grass(0.5));
+                animal.Eat(new Bird(1));
                 Console.WriteLine(animal.Weight);
             }
         }
     }
 
+    class Grass : IEdible
+    {
+        public Grass(double weight)
+        {
+            Weight = weight;
+        }
+        public double Weight { get; set; }
+    }
+
+    interface IEdible
+    {
+        public double Weight { get; }
+    }
+
     //can't be instatiated..only inherited
-    abstract class Animal
+    abstract class Animal : IEdible
     {
         public Animal(double weight)
         {
@@ -38,9 +52,9 @@ namespace Zoo
             MakeSound();
         }
 
-        public virtual void Eat(Animal animalToEat)
+        public virtual void Eat(IEdible edible)
         {
-            this.Weight += animalToEat.Weight;
+            this.Weight += edible.Weight;
         }
 
         public abstract void MakeSound();
@@ -68,9 +82,9 @@ namespace Zoo
         {
 
         }
-        public override void Eat(Animal animalToEat)
+        public override void Eat(IEdible edible)
         {
-            this.Weight += animalToEat.Weight * 0.8;
+            this.Weight += edible.Weight * 0.8;
         }
 
         public override void MakeSound()
