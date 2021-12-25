@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClassLibrary1;
+using System;
 using System.Collections.Generic;
 
 namespace Zoo
@@ -7,6 +8,8 @@ namespace Zoo
     {
         static void Main(string[] args)
         {
+            Class1 class1 = new Class1();
+
             /*Animal cat = new Animal(7.5);
             Animal dog = new Animal(25.2);*/
 
