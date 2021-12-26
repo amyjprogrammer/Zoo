@@ -10,14 +10,21 @@ namespace Zoo
         {
             Class1 class1 = new Class1();
 
+            Point point = new Point(10, 20);
+            /*Point point = null; //can't have a struct be null*/
+
             /*Animal cat = new Animal(7.5);
             Animal dog = new Animal(25.2);*/
 
+            int? age = null;
+            if (age.HasValue)
+                Console.WriteLine(age.Value);
+
             Cat cat = new Cat();
             Dog dog = new Dog(10);
-           /* Bird bird1 = new Bird(1.2);
+            /* Bird bird1 = new Bird(1.2);
 
-            dog.Eat(bird1);*/
+             dog.Eat(bird1);*/
 
             List<Animal> animals = new List<Animal>();
             animals.Add(cat);
@@ -28,6 +35,14 @@ namespace Zoo
                 animal.Eat(new Grass(0.5));
                 animal.Eat(new Bird(1));
                 Console.WriteLine(animal.Weight);
+            }
+
+            Foo(10); //Boxing the int as an object
+
+            static void Foo(object value)
+            {
+                //Unboxing the object (by casting it back into its original type)
+                int myInt = (int)value;
             }
         }
     }
@@ -68,7 +83,7 @@ namespace Zoo
 
     class Cat : Animal
     {
-        public Cat() :  base(4.5)
+        public Cat() : base(4.5)
         {
 
         }
@@ -107,4 +122,21 @@ namespace Zoo
             Console.WriteLine("Chirp");
         }
     }
+
+
+    //can implement interfaces
+    //can't be abstract
+    //are implicity sealed
+    struct Point
+    {
+        public Point(int x, int y)
+        {
+            X = x;
+            Y = y;
+        }
+
+        public int X { get; set; }
+        public int Y { get; set; }
+    }
+
 }
